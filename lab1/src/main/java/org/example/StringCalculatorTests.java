@@ -42,4 +42,18 @@ public class StringCalculatorTests {
         int result = obj.add("4,2\n5");
         assertEquals(11, result);
     }
+
+    @Test
+    public void testCustomDelimiter1() {
+        StringCalculator obj = new StringCalculator();
+        int result = obj.add("//;\n1;2");
+        assertEquals(3, result);
+    }
+
+    @Test
+    public void testCustomDelimiter2() {
+        StringCalculator obj = new StringCalculator();
+        int result = obj.add("//.1.2\n5");
+        assertEquals(8, result);
+    }
 }
