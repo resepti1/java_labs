@@ -29,5 +29,17 @@ public class StringCalculatorTests {
         assertEquals(-5, result);
     }
 
+    @Test
+    public void testNewLine1() {
+        StringCalculator obj = new StringCalculator();
+        int result = obj.add("1\n4,2");
+        assertEquals(7, result);
+    }
 
+    @Test
+    public void testNewLine2() {
+        StringCalculator obj = new StringCalculator();
+        int result = obj.add("4,2\n5");
+        assertEquals(11, result);
+    }
 }
