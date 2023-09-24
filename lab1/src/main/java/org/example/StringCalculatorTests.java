@@ -62,4 +62,11 @@ public class StringCalculatorTests {
         assertThrows(DelimiterInputException.class, () -> obj.add("//.1.2.3"));
     }
 
+    @Test
+    public void NumberGreater1000() throws NegativeInputException, IncorrectInputException, DelimiterInputException {
+        StringCalculator obj = new StringCalculator();
+        int result = obj.add("1000,1");
+        assertEquals(1999, result);
+    }
+
 }

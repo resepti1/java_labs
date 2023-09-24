@@ -47,6 +47,10 @@ public class StringCalculator {
                     negativeNumbers.add(value);
                 }
                 sum += value;
+                if (sum > 1000){
+                    sum = 1999;
+                    break;
+                }
             }
         }
 
