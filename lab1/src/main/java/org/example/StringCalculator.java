@@ -1,28 +1,68 @@
 package org.example;
 
-import java.util.Objects;
+import java.util.ArrayList;
 
 public class StringCalculator {
-    int add(String input){
+    int add(String input) throws IncorrectInputException, NegativeInputException, DelimiterInputException {
         int sum = 0;
-        String regex = "[,\n]";
 
-        if (input.startsWith("//")){
-            regex = "[" + input.charAt(2) + "\n]";
-            input = input.substring(3);
+        if (input.isEmpty()) {
+            return sum;
+        }
+        input = input.replaceAll("\r", "");
+
+        for (int i = 0; i < input.length(); i++) {
+            char c = input.charAt(i);
+            if (c == ',' && input.charAt(i + 1) == '\n'){
+                String message = "Incorrect input!";
+                throw new IncorrectInputException(message);
+            }
+        }
+
+        String regex = "[,\n]";
+        if (input.startsWith("//")) {
+            char delimiter = input.charAt(2);
+            if (input.charAt(3) != '\n'){
+                String message = "Incorrect delimiter input! Use this template //[delimiter]\\n[numbers...].";
+                throw new DelimiterInputException(message);
+            }
+            if (input.charAt(input.length() - 2) == delimiter && input.charAt(input.length() - 1) == '\n'){
+                String message = "Incorrect input!";
+                throw new IncorrectInputException(message);
+            }
+            input = input.substring(input.indexOf(delimiter) + 1);
+            regex = "[" + delimiter + "\n" + "]";
         }
 
 
-        if (!Objects.equals(input, "")) {
-            String[] parts = input.split(regex);
+        String[] parts = input.split(regex);
 
-            for (String part: parts){
-                if (!part.trim().isEmpty()){
-                    sum += Integer.parseInt(part.trim());
+
+        ArrayList<Integer> negativeNumbers = new ArrayList<>();
+
+        for (String number : parts) {
+            if (!number.trim().isEmpty()) {
+                int value = Integer.parseInt(number.trim());
+                if (value < 0) {
+                    negativeNumbers.add(value);
                 }
+                sum += value;
             }
-        } else return 0;
+        }
+
+        if (!negativeNumbers.isEmpty()) {
+            String message = "Negative numbers are not allowed! You tried to input: ";
+            for (int i = 0; i < negativeNumbers.size(); i++) {
+                message += negativeNumbers.get(i) + " ";
+            }
+            throw new NegativeInputException(message);
+        }
+
 
         return sum;
     }
 }
+
+
+
+

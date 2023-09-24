@@ -4,38 +4,44 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        int sum;
         StringCalculator obj = new StringCalculator();
-
-        Scanner scanner = new Scanner(System.in);
         StringBuilder input = new StringBuilder();
-        int enterCount = 0;
 
-        while (true){
+        while (true) {
             System.out.println("Enter line:" + " ");
-            while (enterCount < 1) {
-                String line = scanner.nextLine();
-                if (line.isEmpty()) {
-                    enterCount++;
-                } else {
-                    enterCount = 0;
-                    input.append(line).append(System.lineSeparator());
-                }
-            }
+            String line = readInputLine(input);
+
             try {
-                if (input.charAt(input.length() - 3) == ',') {
-                    throw new IncorrectInputException("Data of the form \"1,enter\" is incorrect to enter");
-                }
-            } catch (IncorrectInputException e) {
+                sum = obj.add(line);
+            } catch (IncorrectInputException | NegativeInputException | DelimiterInputException e) {
                 System.out.println(e.getMessage());
-                enterCount = 0;
                 input.setLength(0);
                 continue;
             }
+
             break;
+
         }
 
-        int sum = obj.add(input.toString());
-
-        System.out.println("Result:" + " " + sum);
+        System.out.println("Result: " + sum);
     }
+
+    private static String readInputLine(StringBuilder input ) {
+        Scanner scanner = new Scanner(System.in);
+        int enterCount = 0;
+
+        while (enterCount < 1) {
+            String line = scanner.nextLine();
+            if (line.isEmpty()) {
+                enterCount++;
+            } else {
+                enterCount = 0;
+                input.append(line).append(System.lineSeparator());
+            }
+        }
+
+        return input.toString();
+    }
+
 }
