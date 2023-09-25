@@ -21,16 +21,28 @@ public class StringCalculator {
 
         String regex = "[,\n]";
         if (input.startsWith("//")) {
-            char delimiter = input.charAt(2);
-            if (input.charAt(3) != '\n'){
+
+            int delimiter_begin_index = input.indexOf('[');
+            int delimiter_end_index = input.indexOf(']');
+            String delimiter;
+
+            if (delimiter_begin_index != -1 && delimiter_end_index != -1){
+                delimiter = input.substring(delimiter_begin_index + 1, delimiter_end_index);
+            } else{
+                String message = "Incorrect delimiter input!! Use this template //[delimiter]\\n[numbers...].";
+                throw new DelimiterInputException(message);
+            }
+
+
+            if (input.charAt(delimiter_end_index + 1) != '\n'){
                 String message = "Incorrect delimiter input! Use this template //[delimiter]\\n[numbers...].";
                 throw new DelimiterInputException(message);
             }
-            if (input.charAt(input.length() - 2) == delimiter && input.charAt(input.length() - 1) == '\n'){
+            if (input.charAt(input.length() - 2) == delimiter.charAt(0) && input.charAt(input.length() - 1) == '\n'){
                 String message = "Incorrect input!";
                 throw new IncorrectInputException(message);
             }
-            input = input.substring(input.indexOf(delimiter) + 1);
+            input = input.substring(delimiter_end_index + 1);
             regex = "[" + delimiter + "\n" + "]";
         }
 

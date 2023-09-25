@@ -38,9 +38,9 @@ public class StringCalculatorTests {
     }
 
     @Test
-    public void testCustomDelimiter() throws NegativeInputException, IncorrectInputException, DelimiterInputException {
+    public void OneCharDelimiter() throws NegativeInputException, IncorrectInputException, DelimiterInputException {
         StringCalculator obj = new StringCalculator();
-        int result = obj.add("//;\n1;2");
+        int result = obj.add("//[;]\n1;2");
         assertEquals(3, result);
     }
 
@@ -67,6 +67,13 @@ public class StringCalculatorTests {
         StringCalculator obj = new StringCalculator();
         int result = obj.add("1000,1");
         assertEquals(1999, result);
+    }
+
+    @Test
+    public void AnyLengthDelimiter() throws NegativeInputException, IncorrectInputException, DelimiterInputException {
+        StringCalculator obj = new StringCalculator();
+        int result = obj.add("//[***]\n10***20***1");
+        assertEquals(31, result);
     }
 
 }
