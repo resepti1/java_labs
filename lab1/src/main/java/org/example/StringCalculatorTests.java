@@ -76,4 +76,17 @@ public class StringCalculatorTests {
         assertEquals(31, result);
     }
 
+    @Test
+    public void MultipleDelimiter() throws NegativeInputException, IncorrectInputException, DelimiterInputException {
+        StringCalculator obj = new StringCalculator();
+        int result = obj.add("//[***][@@@][///]\n5***5///5@@@5");
+        assertEquals(20, result);
+    }
+    @Test
+    public void MultipleDelimiterAnySize() throws NegativeInputException, IncorrectInputException, DelimiterInputException {
+        StringCalculator obj = new StringCalculator();
+        int result = obj.add("//[***][@@][.]\n10***20.1@@2");
+        assertEquals(33, result);
+    }
+
 }
