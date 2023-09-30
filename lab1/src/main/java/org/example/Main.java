@@ -14,14 +14,13 @@ public class Main {
             String input = scanner.nextLine();
             input = input.replace("\\n", "\n");
             try {sum = obj.add(input);
-            } catch (IncorrectInputException e) {
+            } catch (IncorrectInputException | NegativeInputException e) {
                 System.out.println(e.getMessage());
                 continue;
             }
 
             break;
         }
-
 
         System.out.println("Result:" + " " + sum);
     }
