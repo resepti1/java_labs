@@ -12,12 +12,26 @@ public class StringCalculator {
             String regex = "";
 
             if (input.startsWith("//")){
-                char delimiter = input.charAt(2);
+                if (!input.contains("[") | !input.contains("]")){
+                    throw new IncorrectInputException("Incorrect Input of delimiter");
+                }
+
+                int delimiter_begin_ind = input.indexOf("[")+1;
+                int delimiter_end_ind = input.indexOf("]")-1;
+
+                String delimiter = input.substring(delimiter_begin_ind, delimiter_end_ind+1);
+                int delimiter_length = delimiter.length();
+
                 regex = "["+delimiter+","+"\n"+"]";
-                input = input.substring(4);
+
+
+                input = input.substring(input.indexOf("]")+2);
                 input = input.replace(" ","");
                 for (int i = 1; i < input.length(); i++){
-                    if ((input.charAt(i) == '\n' && input.charAt(i-1) == delimiter) | (input.charAt(i) == delimiter && input.charAt(i-1) == '\n')){
+                    if (input.contains("\n" + delimiter) || input.contains(delimiter + "\n")){
+                        throw new IncorrectInputException("Incorrect input!");
+                    }
+                    if (input.contains("\n" + ',') || input.contains(',' + "\n")){
                         throw new IncorrectInputException("Incorrect input!");
                     }
                 }
@@ -38,9 +52,11 @@ public class StringCalculator {
             ArrayList<Integer> negativeNumbers = new ArrayList<>();
             numbers = new int[parts.length];
             for (int i = 0; i < parts.length; i++) {
-                numbers[i] = Integer.parseInt(parts[i]);
-                if (numbers[i] < 0){
-                    negativeNumbers.add(numbers[i]);
+                if (!parts[i].isEmpty()){
+                    numbers[i] = Integer.parseInt(parts[i]);
+                    if (numbers[i] < 0){
+                        negativeNumbers.add(numbers[i]);
+                    }
                 }
             }
 

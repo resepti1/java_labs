@@ -37,7 +37,7 @@ public class StringCalculatorTests {
     @Test
     public void TestOneDelimiter() throws IncorrectInputException, NegativeInputException {
         StringCalculator obj = new StringCalculator();
-        int result = obj.add("//;\n1;2,4\n5");
+        int result = obj.add("//[;]\n1;2,4\n5");
         assertEquals(12, result);
     }
 
@@ -52,6 +52,13 @@ public class StringCalculatorTests {
         StringCalculator obj = new StringCalculator();
         int result = obj.add("1000,200,1001");
         assertEquals(1200, result);
+    }
+
+    @Test
+    public void TestBigDelimiter() throws IncorrectInputException, NegativeInputException {
+        StringCalculator obj = new StringCalculator();
+        int result = obj.add("//[***]\n1***2***3");
+        assertEquals(6, result);
     }
 
 }
