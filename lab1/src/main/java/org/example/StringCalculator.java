@@ -54,6 +54,9 @@ public class StringCalculator {
 
 
             for (int number: numbers){
+                if (number > 1000){
+                    continue;
+                }
                 sum += number;
             }
         } else return 0;

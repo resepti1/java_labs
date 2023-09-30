@@ -47,4 +47,11 @@ public class StringCalculatorTests {
         assertThrows(NegativeInputException.class, () -> obj.add("-7,2,-6\n"));
     }
 
+    @Test
+    public void TestIgnoreThousand() throws IncorrectInputException, NegativeInputException {
+        StringCalculator obj = new StringCalculator();
+        int result = obj.add("1000,200,1001");
+        assertEquals(1200, result);
+    }
+
 }
