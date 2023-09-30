@@ -34,4 +34,11 @@ public class StringCalculatorTests {
         StringCalculator obj = new StringCalculator();
         assertThrows(IncorrectInputException.class, () -> obj.add("1,\n"));
     }
+    @Test
+    public void OneDelimiter() throws IncorrectInputException {
+        StringCalculator obj = new StringCalculator();
+        int result = obj.add("//;\n1;2,4\n5");
+        assertEquals(12, result);
+    }
+
 }

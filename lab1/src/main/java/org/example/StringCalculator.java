@@ -8,7 +8,19 @@ public class StringCalculator {
         int sum = 0;
 
         if (!Objects.equals(input, "")) {
-            String[] parts = input.split("[,\n]");
+
+            String regex = "";
+
+            if (input.startsWith("//")){
+                char delimiter = input.charAt(2);
+                regex = "["+delimiter+","+"\n"+"]";
+                input = input.substring(4);
+                input = input.replace(" ","");
+            } else {
+                regex = "[,\n]";
+            }
+
+            String[] parts = input.split(regex);
 
 
             for (int i = 1; i < input.length(); i++){
