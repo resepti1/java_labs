@@ -61,4 +61,11 @@ public class StringCalculatorTests {
         assertEquals(6, result);
     }
 
+    @Test
+    public void TestMultiplyDelimiter() throws IncorrectInputException, NegativeInputException {
+        StringCalculator obj = new StringCalculator();
+        int result = obj.add("//[*][.]\n1.2*2");
+        assertEquals(5, result);
+    }
+
 }

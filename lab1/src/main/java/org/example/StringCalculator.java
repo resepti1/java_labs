@@ -8,26 +8,41 @@ public class StringCalculator {
         int sum = 0;
 
         if (!Objects.equals(input, "")) {
-
+            boolean isdelimiter = false;
             String regex = "";
-
+            StringBuilder regex_builder = new StringBuilder();
             if (input.startsWith("//")){
+                isdelimiter = true;
                 if (!input.contains("[") | !input.contains("]")){
                     throw new IncorrectInputException("Incorrect Input of delimiter");
                 }
 
-                int delimiter_begin_ind = input.indexOf("[")+1;
-                int delimiter_end_ind = input.indexOf("]")-1;
+                int delimiter_begin_ind;
+                int delimiter_end_ind;
+                String previous_delimiter = "";
 
-                String delimiter = input.substring(delimiter_begin_ind, delimiter_end_ind+1);
-                int delimiter_length = delimiter.length();
+                for (int i = 0; i < input.length(); i++){
+                    if (!input.contains("[") || !input.contains("]")){
+                        break;
+                    }
 
-                regex = "["+delimiter+","+"\n"+"]";
+                    delimiter_begin_ind = input.indexOf("[");
+                    delimiter_end_ind = input.indexOf("]");
 
+                    String delimiter = input.substring(delimiter_begin_ind, delimiter_end_ind+1);
+                    int delimiter_length = delimiter.length();
 
-                input = input.substring(input.indexOf("]")+2);
-                input = input.replace(" ","");
-                for (int i = 1; i < input.length(); i++){
+                    if (i == 0){
+                        regex_builder = new StringBuilder("[" + delimiter + "|" +"," + "\n" + "]");
+                        input = input.substring(delimiter_end_ind + 1);
+                        previous_delimiter = delimiter;
+                    } else{
+                        regex_builder.insert(regex_builder.indexOf(previous_delimiter) + previous_delimiter.length()+1, delimiter  + "|");
+                        input = input.substring(delimiter_end_ind + 1);
+                        previous_delimiter = delimiter;
+                    }
+                    input = input.replace(" ","");
+
                     if (input.contains("\n" + delimiter) || input.contains(delimiter + "\n")){
                         throw new IncorrectInputException("Incorrect input!");
                     }
@@ -35,12 +50,26 @@ public class StringCalculator {
                         throw new IncorrectInputException("Incorrect input!");
                     }
                 }
+                if (input.charAt(0)!='\n'){
+                    throw new IncorrectInputException("Incorrect delimiter input");
+                }
 
             } else {
                 regex = "[,\n]";
             }
 
-            String[] parts = input.split(regex);
+            if (input.contains(",,")){
+                throw new IncorrectInputException("Incorrect input!");
+            }
+
+            String[] parts;
+
+            if (isdelimiter){
+                parts = input.split(regex_builder.toString());
+            } else{
+                parts = input.split(regex);
+            }
+
 
 
             for (int i = 1; i < input.length(); i++){
