@@ -118,10 +118,32 @@ public class Matrix {
         }
 
         int[] size = new int[]{rowsNumber, colsNumber};
-        System.out.println("3. Розмірність матриці:" + " " + Arrays.toString(size));
+        System.out.println("5. Розмірність матриці:" + " " + Arrays.toString(size));
         System.out.println("---------------------------\n");
         return size;
+
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Matrix other = (Matrix) obj;
+
+        boolean equals = Arrays.deepEquals(this.matrix, other.matrix);
+        System.out.println("6. Equals: " + equals);
+        System.out.println("---------------------------\n");
+        return equals;
     }
 
-
+    @Override
+    public int hashCode() {
+        int hashcode = Arrays.deepHashCode(matrix);
+        System.out.println("6. Hashcode: " + hashcode);
+        System.out.println("---------------------------\n");
+        return hashcode;
+    }
 }

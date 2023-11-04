@@ -58,6 +58,31 @@ public class MatrixTests {
         Assertions.assertArrayEquals(expected, result);
     }
 
+    @Test
+    public void Equals(){
+        Matrix obj1 = new Matrix(2,2);
+        obj1.setMatrix(new double[][]{{1,2},
+                                      {3,4}});
+
+        Matrix obj2 = new Matrix(2,2);
+        obj2.setMatrix(new double[][]{{1,2},
+                {3,4}});
+
+        boolean result = obj1.equals(obj2);
+        boolean expected = true;
+        Assertions.assertEquals(expected, result);
+    }
+
+    @Test
+    public void Hashcode(){
+        Matrix obj1 = new Matrix(2,2);
+        obj1.setMatrix(new double[][]{{1,2},
+                {3,4}});
+        Matrix obj2 = new Matrix(2,2);
+        obj2.setMatrix(new double[][]{{1,2},
+                {3,4}});
+        Assertions.assertEquals(obj1.hashCode(), obj2.hashCode());
+    }
 
 
 }
