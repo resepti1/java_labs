@@ -1,6 +1,6 @@
 package org.example;
 
-import java.util.Scanner;
+import java.util.Arrays;
 
 public class Matrix {
     private int rows;
@@ -44,7 +44,7 @@ public class Matrix {
                 matrix[i][j] = values[i][j];
             }
         }
-        System.out.println("Your matrix:");
+        System.out.println("Матриця:");
         for (int i = 0; i < this.rows; i++) {
             for (int j = 0; j < this.columns; j++) {
                 System.out.print(matrix[i][j] + " ");
@@ -55,7 +55,7 @@ public class Matrix {
     }
 
     public double[][] getMatrix(){
-        System.out.println("Your matrix:");
+        System.out.println("Матриця:");
         for (int i = 0; i < this.rows; i++) {
             for (int j = 0; j < this.columns; j++) {
                 System.out.print(matrix[i][j] + " ");
@@ -63,6 +63,49 @@ public class Matrix {
             System.out.println();
         }
         return matrix;
+    }
+
+    public double[] getRow(int n){
+        System.out.println("4. Отримати заданий рядок матриці");
+        double[] row = this.matrix[n-1];
+        System.out.println(n + " " + "Рядок:" + Arrays.toString(row));
+
+        System.out.println("---------------------------\n");
+        return  row;
+    }
+
+    public double[] getColumn(int n){
+        System.out.println("4. Отримати заданий стовпець матриці");
+
+        double[] column = new double[matrix.length];
+
+        for (int i = 0; i < matrix.length; i++) {
+            column[i] = matrix[i][n-1];
+        }
+
+        System.out.println(n + " " + "Стовпець:" + Arrays.toString(column));
+
+        System.out.println("---------------------------\n");
+        return  column;
+    }
+
+    public double getElement(int n){
+        System.out.println("4. Отримати заданий елемент матриці");
+        int count = 0;
+        double element = 0;
+        for (int i = 0; i < this.rows; i++){
+            for (int j = 0; j < this.columns; j++){
+                if(count == n-1){
+                    element = matrix[i][j];
+                }
+                count++;
+            }
+        }
+
+        System.out.println(n + " " + "Елемент:" + element);
+
+        System.out.println("---------------------------\n");
+        return element;
     }
 
 }
