@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Scanner;
+
 public class Matrix {
     private int rows;
     private int columns;
@@ -31,4 +33,36 @@ public class Matrix {
             }
         }
     }
+
+    public void setMatrix(double[][] values) {
+
+        System.out.println("---------------------------");
+        System.out.println("3. Заповнити матрицю значеннями\n");
+
+        for (int i = 0; i < this.rows; i++){
+            for (int j = 0; j < this.columns; j++){
+                matrix[i][j] = values[i][j];
+            }
+        }
+        System.out.println("Your matrix:");
+        for (int i = 0; i < this.rows; i++) {
+            for (int j = 0; j < this.columns; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println("---------------------------\n");
+    }
+
+    public double[][] getMatrix(){
+        System.out.println("Your matrix:");
+        for (int i = 0; i < this.rows; i++) {
+            for (int j = 0; j < this.columns; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+        return matrix;
+    }
+
 }
