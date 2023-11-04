@@ -46,5 +46,18 @@ public class MatrixTests {
         Assertions.assertEquals(expected, result);
     }
 
+    @Test
+    public void getSize(){
+        Matrix obj1 = new Matrix(4,5);
+        obj1.setMatrix(new double[][]{{1.5, 2, 3, 1, 5},
+                {4, 5, 6, 2, 5},
+                {7, 8, 9, 3, 5},
+                {7, 8, 9, 4, 5}});
+        int[] result = obj1.getSize();
+        int[] expected = {4,5};
+        Assertions.assertArrayEquals(expected, result);
+    }
+
+
 
 }

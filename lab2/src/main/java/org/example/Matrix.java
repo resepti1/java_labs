@@ -62,6 +62,7 @@ public class Matrix {
             }
             System.out.println();
         }
+        System.out.println("---------------------------\n");
         return matrix;
     }
 
@@ -107,5 +108,20 @@ public class Matrix {
         System.out.println("---------------------------\n");
         return element;
     }
+
+    public int[] getSize(){
+        int colsNumber = 0;
+
+        int rowsNumber = matrix.length;
+        for (double element : matrix[0]){
+            colsNumber++;
+        }
+
+        int[] size = new int[]{rowsNumber, colsNumber};
+        System.out.println("3. Розмірність матриці:" + " " + Arrays.toString(size));
+        System.out.println("---------------------------\n");
+        return size;
+    }
+
 
 }
