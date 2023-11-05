@@ -234,4 +234,26 @@ public class MatrixTests {
         Assertions.assertArrayEquals(expected, obj.getMatrix());
     }
 
+    @Test
+    public void triangle(){
+        int rows = 3;
+        int columns = 3;
+
+        Matrix obj = new Matrix(rows,columns);
+
+        obj.setMatrix(new double[][]{{2,4,6},
+                {8,4,9},
+                {10,2,18}});
+        double[][][] result = obj.triangle();
+        double[][] expectedL = new double[][]{{2,4,6},
+                {0,-12,-15},
+                {0,0,10.5}};
+        double[][] expectedU = new double[][]{{1,0,0},
+                {4,1,0},
+                {5,1.5,1.0}};
+
+
+        Assertions.assertArrayEquals(expectedL, result[1]);
+        Assertions.assertArrayEquals(expectedU, result[0]);
+    }
 }

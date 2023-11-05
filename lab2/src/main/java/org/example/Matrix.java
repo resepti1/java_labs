@@ -310,4 +310,59 @@ public class Matrix{
         System.out.println("---------------------------\n");
         return obj;
     }
+
+    public double[][][] triangle(){
+        double[][] lMatrix = new double[this.rows][this.columns];
+        double[][] uMatrix = new double[this.rows][this.columns];
+
+        for (int i = 0; i < this.rows; i++) {
+            for (int j = 0; j < this.columns; j++) {
+                uMatrix[i][j] = 0;
+                lMatrix[i][j] = 0;
+                lMatrix[i][i] = 1;
+            }
+        }
+        double sum = 0;
+        for (int i = 0; i < this.rows; i++) {
+            for (int j = 0; j < this.columns; j++) {
+                if (i <= j){
+                    for (int k = 0; k < i; k++){
+                        sum += lMatrix[i][k] * uMatrix[k][j];
+                    }
+                    uMatrix[i][j] = matrix[i][j] - sum;
+                    sum = 0;
+                }
+                if (i>j){
+                    for (int k = 0; k < j; k++){
+                        sum += lMatrix[i][k] * uMatrix[k][j];
+                    }
+                    lMatrix[i][j] = (matrix[i][j] - sum)/uMatrix[j][j];
+                    sum = 0;
+                }
+            }
+        }
+
+        System.out.println("Верхня трикутна матриця: ");
+        for (int i = 0; i < lMatrix.length; i++) {
+            for (int j = 0; j < lMatrix[0].length; j++) {
+                System.out.print(lMatrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println("---------------------------\n");
+
+        System.out.println("Нижня трикутна матриця: ");
+        for (int i = 0; i < uMatrix.length; i++) {
+            for (int j = 0; j < uMatrix[0].length; j++) {
+                System.out.print(uMatrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println("---------------------------\n");
+
+        double[][][] result = {lMatrix, uMatrix};
+        return result;
+
+    }
+
 }
