@@ -1,5 +1,5 @@
 package org.example;
-
+import java.util.Random;
 import java.util.Arrays;
 
 
@@ -243,8 +243,8 @@ public class Matrix{
             throw new IllegalArgumentException("Вектор неправильного розміру.");
         }
 
-        for (int i = 0; i < obj.columns; i++) {
-            for (int j = 0; j < obj.rows; j++) {
+        for (int i = 0; i < obj.rows; i++) {
+            for (int j = 0; j < obj.columns; j++) {
                 if (i == j) {
                     obj.matrix[i][j] = vector[i];
                 }
@@ -252,8 +252,8 @@ public class Matrix{
         }
 
         System.out.println("11. Діагональна матриця: ");
-        for (int i = 0; i < obj.columns; i++) {
-            for (int j = 0; j < obj.rows; j++) {
+        for (int i = 0; i < obj.rows; i++) {
+            for (int j = 0; j < obj.columns; j++) {
                 System.out.print(obj.matrix[i][j] + " ");
             }
             System.out.println();
@@ -269,8 +269,8 @@ public class Matrix{
             throw new IllegalArgumentException("Матриця повинна бути квадратною.");
         }
 
-        for (int i = 0; i < obj.columns; i++) {
-            for (int j = 0; j < obj.rows; j++) {
+        for (int i = 0; i < obj.rows; i++) {
+            for (int j = 0; j < obj.columns; j++) {
                 if (i == j) {
                     obj.matrix[i][j] = 1;
                 }
@@ -278,8 +278,8 @@ public class Matrix{
         }
 
         System.out.println("11. Одинична матриця: ");
-        for (int i = 0; i < obj.columns; i++) {
-            for (int j = 0; j < obj.rows; j++) {
+        for (int i = 0; i < obj.rows; i++) {
+            for (int j = 0; j < obj.columns; j++) {
                 System.out.print(obj.matrix[i][j] + " ");
             }
             System.out.println();
@@ -288,5 +288,26 @@ public class Matrix{
         return obj;
 
     }
+    public static Matrix randomMatrix(int rows, int columns) {
+        Matrix obj = new Matrix(rows, columns);
 
+        Random random = new Random();
+        for (int i = 0; i < obj.rows; i++) {
+            for (int j = 0; j < obj.columns; j++) {
+                double randomDouble = random.nextDouble() * 10.0;
+                double roundedDouble = Math.round(randomDouble * 1000.0) / 1000.0;
+                obj.matrix[i][j] = roundedDouble;
+            }
+        }
+
+        System.out.println("Випадкова матриця: ");
+        for (int i = 0; i < obj.rows; i++) {
+            for (int j = 0; j < obj.columns; j++) {
+                System.out.print(obj.matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println("---------------------------\n");
+        return obj;
+    }
 }
