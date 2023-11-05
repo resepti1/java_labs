@@ -5,14 +5,15 @@ public class Main {
         int rows = 2;
         int columns = 2;
 
-        Matrix obj1 = new Matrix(rows, columns);
-        obj1.setMatrix(new double[][]{{1,2},
-                {3,4}});
-        Matrix obj2 = new Matrix(rows, columns);
-        obj2.setMatrix(new double[][]{{1,1},
-                {1,1}});
-        double[][] result = obj1.add(obj2);
-        double[][] result2 = obj1.multiplyByNumber(10);
+        Matrix obj1 = new Matrix(2, 3);
+        obj1.setMatrix(new double[][]{{1,2,2},
+                                    {3,1,1}});
+        Matrix obj2 = new Matrix(3, 2);
+        obj2.setMatrix(new double[][]{{4,2},
+                {3,1},
+                {1,5}});
+        double[][] result = obj1.multiply(obj2);
+
 
     }
 }

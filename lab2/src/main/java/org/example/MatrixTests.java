@@ -122,4 +122,46 @@ public class MatrixTests {
         Assertions.assertArrayEquals(expected, result);
     }
 
+    @Test
+    public void addException(){
+        Matrix obj1 = new Matrix(2,2);
+        obj1.setMatrix(new double[][]{{1,2},
+                {3,4}});
+        Matrix obj2 = new Matrix(3,2);
+        obj2.setMatrix(new double[][]{{10,10},
+                {10,10},
+                {10,10}});
+        assertThrows(IllegalArgumentException.class, () -> {
+            obj1.add(obj2);
+        });
+    }
+    @Test
+    public void multiplyMatrix(){
+        Matrix obj1 = new Matrix(2, 3);
+        obj1.setMatrix(new double[][]{{1,2,2},
+                {3,1,1}});
+        Matrix obj2 = new Matrix(3, 2);
+        obj2.setMatrix(new double[][]{{4,2},
+                {3,1},
+                {1,5}});
+        double[][] result = obj1.multiply(obj2);
+        double[][] expected = new double[][]{{12,14},
+                {16,12}};
+        Assertions.assertArrayEquals(expected, result);
+    }
+
+    @Test
+    public void multiplyMatrixException(){
+        Matrix obj1 = new Matrix(2, 4);
+        obj1.setMatrix(new double[][]{{1,2,2,4},
+                {3,1,1,4}});
+        Matrix obj2 = new Matrix(3, 2);
+        obj2.setMatrix(new double[][]{{4,2},
+                {3,1},
+                {1,5}});
+        assertThrows(IllegalArgumentException.class, () -> {
+            obj1.multiply(obj2);
+        });
+    }
+
 }

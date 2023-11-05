@@ -148,6 +148,10 @@ public class Matrix{
         return hashcode;
     }
     public double[][] add(Matrix otherMatrix) {
+        if (this.rows != otherMatrix.rows || this.columns != otherMatrix.columns) {
+            throw new IllegalArgumentException("Матриці мають різний розмір");
+        }
+
         double[][] result = new double[rows][columns];
         for (int i = 0; i < this.rows; i++) {
             for (int j = 0; j < this.columns; j++) {
@@ -175,6 +179,32 @@ public class Matrix{
         System.out.println("7. Множення матриці на скаляр: ");
         for (int i = 0; i < this.rows; i++) {
             for (int j = 0; j < this.columns; j++) {
+                System.out.print(result[i][j] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println("---------------------------\n");
+        return result;
+    }
+    public double[][] multiply(Matrix otherMatrix) {
+        if (this.columns != otherMatrix.rows) {
+            throw new IllegalArgumentException("Кількість стовпців матриці А повинно співпадати з кількість рядків матриці Б");
+        }
+
+        double[][] result = new double[this.rows][otherMatrix.columns];
+        int sum = 0;
+        for (int i = 0; i < this.rows; i++) {
+            for (int j = 0; j < result[0].length; j++) {
+                sum = 0;
+                for (int k = 0; k < this.columns; k++){
+                    sum += this.matrix[i][k] * otherMatrix.matrix[k][j];
+                }
+                result[i][j] = sum;
+            }
+        }
+        System.out.println("7. Множення матриць: ");
+        for (int i = 0; i < this.rows; i++) {
+            for (int j = 0; j < otherMatrix.columns; j++) {
                 System.out.print(result[i][j] + " ");
             }
             System.out.println();
