@@ -164,4 +164,16 @@ public class MatrixTests {
         });
     }
 
+    @Test
+    public void transpose(){
+        Matrix obj1 = new Matrix(3, 2);
+        obj1.setMatrix(new double[][]{{1,2},
+                {3,4},
+                {5,6}});
+        double[][] result = obj1.transpose();
+        double[][] expected = new double[][]{{1,3,5},
+                {2,4,6}};
+        Assertions.assertArrayEquals(expected, result);
+    }
+
 }

@@ -158,7 +158,7 @@ public class Matrix{
                 result[i][j] = this.matrix[i][j] + otherMatrix.matrix[i][j];
             }
         }
-        System.out.println("7. Додавання матриць: ");
+        System.out.println("8. Додавання матриць: ");
         for (int i = 0; i < this.rows; i++) {
             for (int j = 0; j < this.columns; j++) {
                 System.out.print(result[i][j] + " ");
@@ -176,7 +176,7 @@ public class Matrix{
                 result[i][j] = this.matrix[i][j] * k;
             }
         }
-        System.out.println("7. Множення матриці на скаляр: ");
+        System.out.println("8. Множення матриці на скаляр: ");
         for (int i = 0; i < this.rows; i++) {
             for (int j = 0; j < this.columns; j++) {
                 System.out.print(result[i][j] + " ");
@@ -202,9 +202,27 @@ public class Matrix{
                 result[i][j] = sum;
             }
         }
-        System.out.println("7. Множення матриць: ");
+        System.out.println("9. Множення матриць: ");
         for (int i = 0; i < this.rows; i++) {
             for (int j = 0; j < otherMatrix.columns; j++) {
+                System.out.print(result[i][j] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println("---------------------------\n");
+        return result;
+    }
+
+    public double[][] transpose() {
+        double[][] result = new double[columns][rows];
+        for (int i = 0; i < this.columns; i++) {
+            for (int j = 0; j < this.rows; j++) {
+                result[i][j] = matrix[j][i];
+            }
+        }
+        System.out.println("10. Транспонована матриця: ");
+        for (int i = 0; i < this.columns; i++) {
+            for (int j = 0; j < this.rows; j++) {
                 System.out.print(result[i][j] + " ");
             }
             System.out.println();
