@@ -176,4 +176,39 @@ public class MatrixTests {
         Assertions.assertArrayEquals(expected, result);
     }
 
+    @Test
+    public void diagonalMatrix(){
+        int rows = 3;
+        int columns = 3;
+
+        double[] vector = new double[]{1,2,3};
+
+        Matrix obj = Matrix.diagonalMatrix(vector, rows, columns);
+        double[][] expected = new double[][]{{1,0,0},
+                {0,2,0},
+                {0,0,3}};
+        Assertions.assertArrayEquals(expected, obj.getMatrix());
+    }
+
+    @Test
+    public void IncorrectVector(){
+        int rows = 3;
+        int columns = 3;
+
+        double[] vector = new double[]{1,2,3,4};
+        assertThrows(IllegalArgumentException.class, () -> {
+            Matrix obj = Matrix.diagonalMatrix(vector, rows, columns);
+        });
+    }
+
+    @Test
+    public void diagonalMatrixIncorrectSize(){
+        int rows = 3;
+        int columns = 4;
+
+        double[] vector = new double[]{1,2,3};
+        assertThrows(IllegalArgumentException.class, () -> {
+            Matrix obj = Matrix.diagonalMatrix(vector, rows, columns);
+        });
+    }
 }

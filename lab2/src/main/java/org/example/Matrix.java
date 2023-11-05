@@ -147,6 +147,7 @@ public class Matrix{
         System.out.println("---------------------------\n");
         return hashcode;
     }
+
     public double[][] add(Matrix otherMatrix) {
         if (this.rows != otherMatrix.rows || this.columns != otherMatrix.columns) {
             throw new IllegalArgumentException("Матриці мають різний розмір");
@@ -229,5 +230,35 @@ public class Matrix{
         }
         System.out.println("---------------------------\n");
         return result;
+    }
+
+    public static Matrix diagonalMatrix(double[] vector, int rows, int columns) {
+        Matrix obj = new Matrix(rows, columns);
+
+        if (obj.columns != obj.rows) {
+            throw new IllegalArgumentException("Матриця повинна бути квадратною.");
+        }
+
+        if (vector.length != obj.rows) {
+            throw new IllegalArgumentException("Вектор неправильного розміру.");
+        }
+
+        for (int i = 0; i < obj.columns; i++) {
+            for (int j = 0; j < obj.rows; j++) {
+                if (i == j) {
+                    obj.matrix[i][j] = vector[i];
+                }
+            }
+        }
+
+        System.out.println("11. Діагональна матриця: ");
+        for (int i = 0; i < obj.columns; i++) {
+            for (int j = 0; j < obj.rows; j++) {
+                System.out.print(obj.matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println("---------------------------\n");
+        return obj;
     }
 }
