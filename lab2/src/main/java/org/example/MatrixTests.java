@@ -1,6 +1,9 @@
 package org.example;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class MatrixTests {
     @Test
     public void setMatrix() {
@@ -84,5 +87,12 @@ public class MatrixTests {
         Assertions.assertEquals(obj1.hashCode(), obj2.hashCode());
     }
 
+    @Test
+    public void testSettingMatrixAfterImmutable() {
+        ImmutableMatrix obj = new ImmutableMatrix();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            obj.setMatrix(new double[][]{{1, 2}, {3, 5}});
+        });
+    }
 
 }
