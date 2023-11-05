@@ -211,4 +211,27 @@ public class MatrixTests {
             Matrix obj = Matrix.diagonalMatrix(vector, rows, columns);
         });
     }
+    @Test
+    public void identityMatrixIncorrectSize(){
+        int rows = 3;
+        int columns = 4;
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            Matrix obj = Matrix.identityMatrix(rows, columns);
+        });
+    }
+
+    @Test
+    public void identityMatrix(){
+        int rows = 3;
+        int columns = 3;
+
+        Matrix obj = Matrix.identityMatrix(rows,columns);
+
+        double[][] expected = new double[][]{{1,0,0},
+                {0,1,0},
+                {0,0,1}};
+        Assertions.assertArrayEquals(expected, obj.getMatrix());
+    }
+
 }

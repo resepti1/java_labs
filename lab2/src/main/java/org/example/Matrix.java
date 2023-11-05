@@ -261,4 +261,32 @@ public class Matrix{
         System.out.println("---------------------------\n");
         return obj;
     }
+
+    public static Matrix identityMatrix(int rows, int columns) {
+        Matrix obj = new Matrix(rows, columns);
+
+        if (obj.columns != obj.rows) {
+            throw new IllegalArgumentException("Матриця повинна бути квадратною.");
+        }
+
+        for (int i = 0; i < obj.columns; i++) {
+            for (int j = 0; j < obj.rows; j++) {
+                if (i == j) {
+                    obj.matrix[i][j] = 1;
+                }
+            }
+        }
+
+        System.out.println("11. Одинична матриця: ");
+        for (int i = 0; i < obj.columns; i++) {
+            for (int j = 0; j < obj.rows; j++) {
+                System.out.print(obj.matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println("---------------------------\n");
+        return obj;
+
+    }
+
 }
