@@ -95,4 +95,31 @@ public class MatrixTests {
         });
     }
 
+    @Test
+    public void add(){
+        Matrix obj1 = new Matrix(2,2);
+        obj1.setMatrix(new double[][]{{1,2},
+                                      {3,4}});
+        Matrix obj2 = new Matrix(2,2);
+        obj2.setMatrix(new double[][]{{10,10},
+                {10,10}});
+
+        double[][] result = obj1.add(obj2);
+        double[][] expected = new double[][]{{11,12},
+                {13,14}};
+        Assertions.assertArrayEquals(expected, result);
+    }
+
+    @Test
+    public void multiplyBuNumber(){
+        Matrix obj1 = new Matrix(2,2);
+        obj1.setMatrix(new double[][]{{1,2},
+                {3,4}});
+
+        double[][] result = obj1.multiplyByNumber(10);
+        double[][] expected = new double[][]{{10,20},
+                {30,40}};
+        Assertions.assertArrayEquals(expected, result);
+    }
+
 }

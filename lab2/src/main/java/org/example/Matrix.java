@@ -147,4 +147,39 @@ public class Matrix{
         System.out.println("---------------------------\n");
         return hashcode;
     }
+    public double[][] add(Matrix otherMatrix) {
+        double[][] result = new double[rows][columns];
+        for (int i = 0; i < this.rows; i++) {
+            for (int j = 0; j < this.columns; j++) {
+                result[i][j] = this.matrix[i][j] + otherMatrix.matrix[i][j];
+            }
+        }
+        System.out.println("7. Додавання матриць: ");
+        for (int i = 0; i < this.rows; i++) {
+            for (int j = 0; j < this.columns; j++) {
+                System.out.print(result[i][j] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println("---------------------------\n");
+        return result;
+    }
+
+    public double[][] multiplyByNumber(double k) {
+        double[][] result = new double[rows][columns];
+        for (int i = 0; i < this.rows; i++) {
+            for (int j = 0; j < this.columns; j++) {
+                result[i][j] = this.matrix[i][j] * k;
+            }
+        }
+        System.out.println("7. Множення матриці на скаляр: ");
+        for (int i = 0; i < this.rows; i++) {
+            for (int j = 0; j < this.columns; j++) {
+                System.out.print(result[i][j] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println("---------------------------\n");
+        return result;
+    }
 }
